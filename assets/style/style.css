@@ -1,0 +1,50 @@
+body {
+  background-color: rgb(216, 242, 242);
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid black;
+}
+
+main > div {
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 3px solid blue;
+}
+
+.textInputs {
+  justify-content: space-evenly;
+}
+
+#changeMethod,
+#weatherOutput {
+  justify-content: space-evenly;
+}
+
+#labelId,
+#labelName {
+  flex-basis: 20%;
+}
+
+#inputId,
+#inputName {
+  border: 2px solid;
+  flex-basis: 50%;
+}
+
+#weatherOutput > div > div {
+  /* display: block; */
+  border: 2px solid blue;
+  min-width: 100px;
+  min-height: 30px;
+}
+
+#buttonDiv {
+  justify-content: space-evenly;
+  border: none;
+}

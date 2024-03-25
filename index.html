@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <script defer src="./src/index.js"></script>
+    <title>Your weather</title>
+</head>
+
+<body>
+    <header>
+        <h1>Weather map</h1>
+    </header>
+    <main>
+        <div class="textInputs">
+            <label for="inputId" id="labelId">City ID</label>
+            <input type="text" id="inputId">
+        </div>
+        <div class="textInputs">
+            <label for="inputName" id="labelName">City name</label>
+            <input type="text" id="inputName">
+        </div>
+        <div id="changeMethod">
+            <div>
+                <label for="cityId">City ID</label>
+                <input type="radio" name="nameOrId" id="cityId">
+            </div>
+            <div>
+                <label for="cityName">City name</label>
+                <input type="radio" name="nameOrId" id="cityName" checked>
+            </div>
+        </div>
+        <div id="weatherOutput">
+            <div>
+                <p>Temperature</p>
+                <div></div>
+            </div>
+            <div>
+                <p>Wind speed</p>
+                <div></div>
+            </div>
+            <div>
+                <p>Humidity</p>
+                <div></div>
+            </div>
+        </div>
+        <div id="buttonDiv">
+            <button>Ok</button>
+            <button>Weather</button>
+            <button>Cancel</button>
+        </div>
+    </main>
+</body>
+
+</html>
