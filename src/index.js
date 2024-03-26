@@ -26,22 +26,26 @@ function choiceMethod() {
   const idInput = document.getElementById('inputId');
   const nameInput = document.getElementById('inputName');
   console.log(radioChecked.id);
-  if (idInput && nameInput && yourCity) {
-    if (radioChecked.id === 'cityName') {
-      nameInput.removeAttribute('disabled');
-      idInput.value = '';
-      weatherFor = `q=${yourCity.cityName}`;
-      idInput.setAttribute('disabled', 'disabled');
-    } else {
-      idInput.removeAttribute('disabled');
-      nameInput.value = '';
-      weatherFor = `id=${yourCity.cityId}`;
-      nameInput.setAttribute('disabled', 'disabled');
-    }
-    console.log(weatherFor);
-    return weatherFor;
+  if (!yourCity) {
+    getValue();
   }
-}
+  else {
+      if (radioChecked.id === 'cityName') {
+        nameInput.removeAttribute('disabled');
+        idInput.value = '';
+        weatherFor = `q=${yourCity.cityName}`;
+        idInput.setAttribute('disabled', 'disabled');
+      } else {
+        idInput.removeAttribute('disabled');
+        nameInput.value = '';
+        weatherFor = `id=${yourCity.cityId}`;
+        nameInput.setAttribute('disabled', 'disabled');
+      }
+      console.log(weatherFor);
+      return weatherFor;
+    }
+  }
+
 
 function getWeather() {
   fetch(
