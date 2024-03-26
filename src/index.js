@@ -2,6 +2,10 @@
 const inputs = document.getElementById('idOrName');
 const radioBtn = document.getElementById('changeMethod');
 const btnWeather = document.getElementById('btnWeather');
+const divTemp = document.getElementById('divTemp');
+const divWindSpeed = document.getElementById('divWindSpeed');
+const divHumidity = document.getElementById('divHumidity');
+
 let yourCity;
 let weatherFor;
 
@@ -28,24 +32,22 @@ function choiceMethod() {
   console.log(radioChecked.id);
   if (!yourCity) {
     getValue();
-  }
-  else {
-      if (radioChecked.id === 'cityName') {
-        nameInput.removeAttribute('disabled');
-        idInput.value = '';
-        weatherFor = `q=${yourCity.cityName}`;
-        idInput.setAttribute('disabled', 'disabled');
-      } else {
-        idInput.removeAttribute('disabled');
-        nameInput.value = '';
-        weatherFor = `id=${yourCity.cityId}`;
-        nameInput.setAttribute('disabled', 'disabled');
-      }
-      console.log(weatherFor);
-      return weatherFor;
+  } else {
+    if (radioChecked.id === 'cityName') {
+      nameInput.removeAttribute('disabled');
+      idInput.value = '';
+      weatherFor = `q=${yourCity.cityName}`;
+      idInput.setAttribute('disabled', 'disabled');
+    } else {
+      idInput.removeAttribute('disabled');
+      nameInput.value = '';
+      weatherFor = `id=${yourCity.cityId}`;
+      nameInput.setAttribute('disabled', 'disabled');
     }
+    console.log(weatherFor);
+    return weatherFor;
   }
-
+}
 
 function getWeather() {
   fetch(
@@ -57,7 +59,15 @@ function getWeather() {
       return weather.json();
     })
     .then((data) => {
-      console.log(data);
+      divHumidity.innerHTML = '';
+      divWindSpeed.innerHTML = '';
+      divTemp.innerHTML = '';
+      const temp = data.main.temp;
+      divTemp.innerHTML = `<span class="weatherData">${temp}°C</span>`;
+      const windSpeed = data.wind.speed;
+      divWindSpeed.innerHTML = `<span class="weatherData">${windSpeed}m/s</span>`;
+      const humidity = data.main.humidity;
+      divHumidity.innerHTML = `<span class="weatherData">${humidity}%</span>`;
     })
     .catch((error) => {
       console.log(error);

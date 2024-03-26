@@ -12,22 +12,19 @@ main {
 #idOrName > div {
   display: flex;
   width: 80%;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 10px;
   border: 3px solid rgb(0, 255, 42);
+  justify-content: space-evenly;
 }
 
-#changeMethod, #weatherOutput {
+#changeMethod,
+#weatherOutput {
   display: flex;
   width: 80%;
   margin: 10px auto;
   padding: 10px;
   border: 3px solid blue;
-}
-
-.textInputs {
-  border: 3px solid green;
-  justify-content: space-evenly;
 }
 
 #changeMethod {
@@ -46,8 +43,24 @@ main {
 
 #inputId,
 #inputName {
-  border: 2px solid;
+  height: 20px;
+  border: none;
+  outline: 3px solid teal;
+  border-radius: 5px;
   flex-basis: 50%;
+}
+
+#divHumidity,
+#divTemp,
+#divWindSpeed {
+  display: flex;
+}
+
+.weatherData {
+  margin: auto;
+  font-size: 20px;
+  font-weight: 500;
+  color: teal;
 }
 
 #weatherOutput > div > div {
