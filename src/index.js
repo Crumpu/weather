@@ -12,34 +12,36 @@ class Param {
   }
 }
 
-function choiceMethod() {
-  const radioChecked = radioBtn.querySelector('input:checked');
-  let idInput = document.getElementById('inputId');
-  let nameInput = document.getElementById('inputName');
-  if (radioChecked.id === 'cityName') {
-    nameInput.removeAttribute('disabled');
-    idInput.value = '';
-    weatherFor = `q=${yourCity.cityName}`;
-    idInput.setAttribute('disabled', 'disabled');
-  } else {
-    idInput.removeAttribute('disabled');
-    nameInput.value = '';
-    weatherFor = `id=${yourCity.cityId}`;
-    nameInput.setAttribute('disabled', 'disabled');
-  }
-  console.log(weatherFor);
-  return weatherFor;
-}
-
 function getValue() {
   const cityInfo = inputs.querySelectorAll('input');
   const arrayCityInfo = Array.from(cityInfo).map((el) => el.value);
   yourCity = new Param(...arrayCityInfo);
   console.log(yourCity);
+  choiceMethod();
   return yourCity;
 }
 
-
+function choiceMethod() {
+  const radioChecked = radioBtn.querySelector('input:checked');
+  const idInput = document.getElementById('inputId');
+  const nameInput = document.getElementById('inputName');
+  console.log(radioChecked.id);
+  if (idInput && nameInput && yourCity) {
+    if (radioChecked.id === 'cityName') {
+      nameInput.removeAttribute('disabled');
+      idInput.value = '';
+      weatherFor = `q=${yourCity.cityName}`;
+      idInput.setAttribute('disabled', 'disabled');
+    } else {
+      idInput.removeAttribute('disabled');
+      nameInput.value = '';
+      weatherFor = `id=${yourCity.cityId}`;
+      nameInput.setAttribute('disabled', 'disabled');
+    }
+    console.log(weatherFor);
+    return weatherFor;
+  }
+}
 
 function getWeather() {
   fetch(
@@ -58,6 +60,6 @@ function getWeather() {
     });
 }
 
-inputs.addEventListener('change', getValue, choiceMethod);
-radioBtn.addEventListener('change', choiceMethod);
+inputs.addEventListener('change', getValue);
+radioBtn.addEventListener('change', choiceMethod, getValue);
 btnWeather.addEventListener('click', getWeather);
