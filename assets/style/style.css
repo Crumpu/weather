@@ -9,7 +9,15 @@ main {
   border: 3px solid black;
 }
 
-main > div {
+#idOrName > div {
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 3px solid rgb(0, 255, 42);
+}
+
+#changeMethod, #weatherOutput {
   display: flex;
   width: 80%;
   margin: 10px auto;
@@ -18,10 +26,15 @@ main > div {
 }
 
 .textInputs {
+  border: 3px solid green;
   justify-content: space-evenly;
 }
 
-#changeMethod,
+#changeMethod {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #weatherOutput {
   justify-content: space-evenly;
 }
@@ -38,13 +51,12 @@ main > div {
 }
 
 #weatherOutput > div > div {
-  /* display: block; */
   border: 2px solid blue;
   min-width: 100px;
   min-height: 30px;
 }
 
 #buttonDiv {
+  display: flex;
   justify-content: space-evenly;
-  border: none;
 }

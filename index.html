@@ -14,13 +14,15 @@
         <h1>Weather map</h1>
     </header>
     <main>
-        <div class="textInputs">
+        <div id="idOrName">
+             <div class="textInputs">
             <label for="inputId" id="labelId">City ID</label>
-            <input type="text" id="inputId">
+            <input type="text" id="inputId" placeholder="Enter id your city" disabled>
         </div>
         <div class="textInputs">
             <label for="inputName" id="labelName">City name</label>
-            <input type="text" id="inputName">
+            <input type="text" id="inputName" placeholder="Enter name your city">
+        </div>
         </div>
         <div id="changeMethod">
             <div>
@@ -46,9 +48,10 @@
                 <div></div>
             </div>
         </div>
+
         <div id="buttonDiv">
             <button>Ok</button>
-            <button>Weather</button>
+            <button id="btnWeather">Weather</button>
             <button>Cancel</button>
         </div>
     </main>

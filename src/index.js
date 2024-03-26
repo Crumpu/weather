@@ -1,8 +1,9 @@
 'use strict';
-const inputs = document.getElementsByClassName('textInputs');
-const nn = inputs.childNodes;
-console.log(nn)
-let ourCity;
+const inputs = document.getElementById('idOrName');
+const radioBtn = document.getElementById('changeMethod');
+const btnWeather = document.getElementById('btnWeather');
+let yourCity;
+let weatherFor;
 
 class Param {
   constructor(cityId, cityName) {
@@ -11,19 +12,52 @@ class Param {
   }
 }
 
-function getValue(e) {
-    // e.target
-    const cityInfo = inputs.querySelectorAll('input');
-    const arrayCityInfo = Array.from(cityInfo).map((el) => el.value)
-  const inputsValue = new Param(...arrayCityInfo);
-
-  console.log(inputsValue);
+function choiceMethod() {
+  const radioChecked = radioBtn.querySelector('input:checked');
+  let idInput = document.getElementById('inputId');
+  let nameInput = document.getElementById('inputName');
+  if (radioChecked.id === 'cityName') {
+    nameInput.removeAttribute('disabled');
+    idInput.value = '';
+    weatherFor = `q=${yourCity.cityName}`;
+    idInput.setAttribute('disabled', 'disabled');
+  } else {
+    idInput.removeAttribute('disabled');
+    nameInput.value = '';
+    weatherFor = `id=${yourCity.cityId}`;
+    nameInput.setAttribute('disabled', 'disabled');
+  }
+  console.log(weatherFor);
+  return weatherFor;
 }
 
-// const param = {
-//   url: 'https://api.openweathermap.org/data/2.5/weather?',
-//   appid: 'fbdc53e777270dc02e9feb36e9387389',
-//   cityName: '',
-// };
+function getValue() {
+  const cityInfo = inputs.querySelectorAll('input');
+  const arrayCityInfo = Array.from(cityInfo).map((el) => el.value);
+  yourCity = new Param(...arrayCityInfo);
+  console.log(yourCity);
+  return yourCity;
+}
 
-inputs.addEventListener('change', getValue);
+
+
+function getWeather() {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?${weatherFor}&units=metric&APPID=fbdc53e777270dc02e9feb36e9387389`
+  )
+    .then((weather) => {
+      console.log(weather);
+      if (!weather.ok) throw new Error('Error');
+      return weather.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+inputs.addEventListener('change', getValue, choiceMethod);
+radioBtn.addEventListener('change', choiceMethod);
+btnWeather.addEventListener('click', getWeather);
